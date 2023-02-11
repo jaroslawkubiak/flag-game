@@ -1,0 +1,168 @@
+/* answer select button */
+.btnQuestion {
+  font-size: 1.2rem;
+  width: 90%;
+  height: 130px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5em;
+  margin: 1rem;
+  border-radius: 20px;
+  position: relative;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  border: 3px solid var(--color-primary);
+  background-color: white;
+  color: var(--color-primary);
+}
+
+.btnQuestion:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btnQuestion:active {
+  transform: scale(0.9);
+}
+
+/* btn with correct answer */
+.btnQuestionCorrect {
+  font-size: 1.2rem;
+  width: 90%;
+  height: 130px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5em;
+  margin: 1rem;
+  border: 3px solid chartreuse;
+  background-color: chartreuse;
+  border-radius: 20px;
+  position: relative;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+/* btn with wrong answer */
+.btnQuestionWrong {
+  font-size: 1.2rem;
+  width: 90%;
+  height: 130px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5em;
+  margin: 1rem;
+  border: 3px solid crimson;
+  background-color: crimson;
+  border-radius: 20px;
+  position: relative;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+/* btn disabled */
+.btnQuestionDisabled {
+  font-size: 1.2rem;
+  width: 90%;
+  height: 130px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5em;
+  margin: 1rem;
+  border: 3px solid rgb(147, 147, 147);
+  background-color: rgb(222, 222, 222);
+  border-radius: 20px;
+  position: relative;
+  color: rgb(177, 177, 177);
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+/* start game button */
+.play-btn-div {
+  transition: all 0.3s;
+  z-index: 4;
+}
+
+.play-btn {
+  background: var(--color-primary);
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  font-family: "Poppins";
+  padding: 0.35em;
+  width: 110%;
+  padding-left: 1.2em;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.play-btn .icon {
+  background: rgb(255, 255, 255);
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 3.2em;
+  border-radius: 0.7em;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.play-btn:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.play-btn:active .icon {
+  transform: scale(0.95);
+}
+
+.btnResetGame {
+  background: none;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 5;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.btnResetGame:hover {
+  transform: rotate(180deg);
+  transition: 0.5s ease all;
+}
+
+#svg-resetGame {
+  color: white;
+  width: 40px;
+  height: 40px;
+}

@@ -1,0 +1,109 @@
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+:root {
+  --loader-color-primary: #ea630f;
+  --loader-color-secondary: #13e63a;
+  --loader-background: #ffffff;
+
+  /* --background-color: #01629f;
+  --continent-color: #c1975c; */
+  --background-color: rgb(198, 255, 255);
+  --continent-color: #4b8af7;
+
+  --color-primary: #4b8af7;
+  --card-color: #d0d0d0;
+  --card-height: 800px;
+
+  --loader-color1: #0045bc;
+  --loader-color2: #153d83;
+  --loader-color3: #18305a;
+  --loader-color4: #132035;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--background-color);
+  font-family: "Poppins";
+}
+
+h1 {
+  color: rgb(16, 73, 159);
+  margin-top: 3rem;
+}
+
+h5 {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.game-container {
+  margin-top: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.hidden {
+  opacity: 0;
+  display: none;
+}
+
+.loader-container {
+  margin: 1rem 0;
+  display: grid;
+  place-items: center;
+  justify-content: center;
+}
+
+.loader-wrapper {
+  width: 100px;
+  height: 100px;
+}
+.loader {
+  width: 100%;
+  height: 100%;
+  border: 5px solid var(--background-color);
+  /* border-top-color: var(--loader-color-primary);
+  border-bottom-color: var(--loader-color-secondary); */
+  border-top-color: var(--loader-color1);
+  border-right-color: var(--loader-color2);
+  border-bottom-color: var(--loader-color3);
+  border-left-color: var(--loader-color4);
+
+  border-radius: 50%;
+  animation: rotate 5s linear infinite;
+}
+.loader--inner {
+  border-top-color: var(--loader-color1);
+  border-right-color: var(--loader-color2);
+  border-bottom-color: var(--loader-color3);
+  border-left-color: var(--loader-color4);
+  /* border-top-color: var(--loader-color-primary);
+  border-bottom-color: var(--loader-color-secondary); */
+  animation-duration: 2.5s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: scale(1) rotate(360deg);
+  }
+  50% {
+    transform: scale(0.8) rotate(-360deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+#svg-start-game {
+  color: var(--continent-color);
+  width: 44px;
+  height: 44px;
+}

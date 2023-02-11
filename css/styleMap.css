@@ -1,0 +1,35 @@
+
+.map-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.world-map {
+  padding: 0;
+  z-index: 3;
+}
+
+.selected {
+  stroke: rgb(3, 9, 74);
+  stroke-width: 50px;
+}
+
+.Africa {
+  fill: var(--continent-color);
+}
+
+.Asia {
+  fill: var(--continent-color);
+}
+.Oceania {
+  fill: var(--continent-color);
+}
+
+.Europe {
+  fill: var(--continent-color);
+}
+.America {
+  fill: var(--continent-color);
+}
