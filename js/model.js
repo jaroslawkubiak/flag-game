@@ -3,6 +3,7 @@ import { insertCountryObject, startGame } from "./script.js";
 const NOTCountry = [
   "Svalbard and Jan Mayen",
   "Guernsey",
+  "Russia",
   "Isle of Man",
   "Faroe Islands",
   "Gibraltar",
@@ -65,7 +66,7 @@ export const getCountries = async function (regionArr) {
       });
     });
 
-    // for (let i = 0; i < 1000000000; i++) {}
+    // for (let i = 0; i < 4000000000; i++) {}
 
     if (!resultData) throw new Error(`🔥 Data not found. 🔥`);
     else startGame();

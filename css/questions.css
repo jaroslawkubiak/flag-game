@@ -1,113 +1,70 @@
-/* .wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid red;
-} */
-
-/* proporcje karty 3,5 x 2,5"  */
-/* 3,5/1000 = 2,5/X   x= (2,5*1000)/3,5  */
 .questionWrapper {
-  /* background-color: var(--background-color); */
   background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-  height: var(--card-height);
-  width: calc((2.5 * var(--card-height)) / 3.5);
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 85vh;
   border-radius: 30px;
   border: 3px solid black;
-  flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
-.disply-flex {
+.column {
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.col {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: relative;
 }
 
-.questionItem {
-  /* width: 90%; */
-  /* padding: 1rem; */
-  /* border: 1px solid rgb(255, 251, 0); */
-  text-align: center;
-  /* align-items: center;
-  justify-content: center; */
+.topWrapper {
+  height: 55%;
+  position: relative;
+}
+.answerWrapper {
+  height: 40%;
+  width: 100%;
 }
 
 .questionNumber {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
-
-/* .question {
-  justify-content: center;
-  text-align: center;
-  font-size: 1.5rem;
-  padding: 1rem;
-  border: 2px solid red;
-} */
-
-/* .flag-img {
-  display: flex;
-  justify-content: center;
-  position: relative;
-} */
 
 img {
-  max-width: 300px;
-  max-height: 250px;
-  margin-top: 2rem;
+  /* max-width: 300px; */
+  max-height: 200px;
+  margin-top: 1rem;
+}
+.flag-img {
+  flex-grow: 2;
 }
 
-.answerWrapper {
-  position: absolute;
-  bottom: 2rem;
-  left: 1rem;
-  right: 1rem;
-  grid-template-columns: 1fr 1fr;
-  list-style: none;
-  display: grid;
-}
-
-.questionText {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  width: 100%;
-  font-size: 1.6rem;
-  margin: 1rem 0 2rem 0;
-}
-
-.answer {
-  width: 100%;
-}
-
+/* score table after game finish */
 .scoreTableWrapper {
   position: absolute;
-  padding: 1rem;
-  width:100%;
-  height: 100%;
+  top: 1rem;
+  bottom:1rem;
+  left: 1rem;
+  right:1rem;
   z-index: 10;
-}
-
-.scoreTable {
-  padding: 3rem;
-  border-radius: 20px;
+  border-radius: 30px;
   color: white;
-  font-size: 2rem;
+  font-size: 1.2rem;
+  padding: 1rem;
+  border: 3px solid black;
   background-color: rgba(65, 65, 65, 0.92);
-  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .gameOver {
-  width: 100%;
   text-align: center;
   padding-bottom: 20px;
-}
-
-.playAgain-btn {
-  width: 200px;
-  padding-top: 3rem;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .good span {
@@ -116,4 +73,64 @@ img {
 
 .wrong span {
   color: crimson;
+}
+
+/* phones in landscape mode */
+@media screen and (orientation: landscape) and (width < 845px) {
+  .questionWrapper {
+    flex-direction: row;
+    justify-content: end;
+    width: 700px;
+    height: 350px;
+  }
+
+  .topWrapper {
+    height: 100%;
+    width: 45%;
+  }
+
+  .answerWrapper {
+    height: 100%;
+    width: 50%;
+  }
+
+  .questionNumber {
+    margin-top: 0.5rem;
+  }
+  img {
+    margin-top: 0;
+  }
+
+  .scoreTableWrapper {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  
+}
+
+/* PC  */
+@media screen and (width > 845px) {
+  .questionWrapper {
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    height: var(--card-height);
+    width: calc((2.5 * var(--card-height)) / 3.5);
+    flex-direction: column;
+  }
+
+  .column {
+    width: 90%;
+  }
+
+  .topWrapper {
+    height: 45%;
+  }
+
+  .answerWrapper {
+    width: 80%;
+    height: 55%;
+  }
+  .scoreTableWrapper {
+    padding: 2rem;
+  }
+  
 }

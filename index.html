@@ -6,70 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Guess flag - game</title>
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/styleMap.css" />
     <link rel="stylesheet" href="css/btn.css" />
     <link rel="stylesheet" href="css/questions.css" />
-    <link rel="stylesheet" href="css/phonePortrait.css" />
-    <link rel="stylesheet" href="css/phoneLandscape.css" />
 
     <script type="module" src="js/script.js"></script>
-    <!-- <script defer src="js/model.js"></script> -->
-    <!-- <script defer src="js/controller.js"></script> -->
   </head>
   <body>
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
     <div class="game-container ">
         <div class="questionWrapper hidden">
-          
+
           <!-- game over - score table -->
           <div class="scoreTableWrapper hidden">
-            <div class="scoreTable">
-            </div>
           </div>
 
-          <!-- text with question number - insert from js -->
-          <div class="questionItem questionNumber"></div>
-          
-          <!-- flag of country -->
-          <div class="questionItem flag-img">
-            <img id="flag"></img>
-
-            <!-- loading wrapper - waiting for fetch -->
-            <div class="loader-container hidden">
-              <div class="loader-wrapper">
-                <div class="loader">
-                  <div class="loader loader--inner"></div>
-                </div>
-              </div>     
-            </div>
-          </div>
-
-          <!-- answers to flag -->
-          <div class="answerWrapper">
-
-            <div class="questionItem questionText">
-              <h5 id="questionText">Which country has this flag?</h5>
-            </div>
-            <div class="questionItem answer">
-              <button class="btnQuestion" id="A"></button>
-            </div>
-            <div class="questionItem answer">
-              <button class="btnQuestion" id="B"></button>
-            </div>
-            <div class="questionItem answer">
-              <button class="btnQuestion" id="C"></button>
-            </div>
-            <div class="questionItem answer">
-              <button class="btnQuestion" id="D"></button>
-            </div>
-          </div>
-          <!-- reset game button -->
-          <button class="btnResetGame " id="resetGame">
+          <div class="column topWrapper">
+            <button class="btnResetGame hidden">
               <svg
-                id="svg-resetGame"
-                data-name="Layer 1"
-                xmlns="http://www.w3.org/2000/svg"
+                id="svgResetGame"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
               >
@@ -91,19 +46,50 @@
                   points="3.39 23.5 3.39 17.76 9.13 17.76"
                 ></polyline>
               </svg>
-          </button>
+            </button>
+
+            <div class="col questionNumber hidden"></div>
+            <div class="col flag-img ">
+              <img id="flag"></img>
+              <!-- loading wrapper - waiting for fetch -->
+              <div class="loader-container  hidden">
+                <div class="loader-wrapper">
+                  <div class="loader  ">
+                    <div class="loader loader--inner "></div>
+                  </div>
+                </div>     
+              </div>              
+            </div>
+            <div class="col hidden" id="question">
+              <h5>Which country has this flag?</h5>
+            </div>
+          </div>
+
+          <div class="column answerWrapper hidden">
+            <div class="col">
+                <button class="btnQuestion" id="A"></button>
+            </div>
+            <div class="col">
+                <button class="btnQuestion" id="B"></button>
+            </div>
+            <div class="col">
+                <button class="btnQuestion" id="C"></button>
+            </div>
+            <div class="col">
+                <button class="btnQuestion" id="D"></button>
+            </div>
+          </div>
         </div>
-        <!-- END game over - score table -->
-      <!-- </div> -->
 
       <div class="map-container">
         <!-- header - info about game -->
-        <h1 id="header">
-          Choose a continent and start the game.
-        </h1>      
-  
+        <div class="">
+          <h1 id="header">
+            Click on a continent to start the game.
+          </h1>      
+        </div>
         <!-- BEGIN world map in svg - player can select designatet continent -->
-        <div class="world-map">
+        <div class="world-map ">
           <svg
             version="1.0"
             width="1000"
@@ -396,11 +382,11 @@
         </div>
   
         <!-- start game button - visible after select at leats one continent -->
-        <div class="play-btn-div hidden">
-          <button class="play-btn">
+        <div class=" divStartGame hidden">
+          <button class="btnStartGame">
             Start game
             <div class="icon">
-              <svg id="svg-start-game"         
+              <svg id="svgStartGame"         
                viewBox="0 0 24 24" stroke-width="1.5" ><defs><style>.cls-637b8a2bf95e86b59c57a23b-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M18.34,4.21A4.86,4.86,0,0,0,14,6.14H10A4.86,4.86,0,0,0,5.66,4.21,5,5,0,0,0,1.25,9.28v7A3.5,3.5,0,0,0,8,17.61c.42-1.05.94-2.37,1.42-3.66h5.16c.48,1.29,1,2.61,1.42,3.66a3.5,3.5,0,0,0,6.75-1.29v-7A5,5,0,0,0,18.34,4.21Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M18.84,12h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M18.84,8.09h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M20.79,10.05h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M16.89,10.05h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M7.11,12h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M7.11,8.09h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M9.07,10.05h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M5.16,10.05h0Z"></path></svg>
             </div>
           </button>

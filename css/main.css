@@ -2,12 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 :root {
-  --loader-color-primary: #ea630f;
-  --loader-color-secondary: #13e63a;
-  --loader-background: #ffffff;
-
-  /* --background-color: #01629f;
-  --continent-color: #c1975c; */
   --background-color: rgb(198, 255, 255);
   --continent-color: #4b8af7;
 
@@ -25,19 +19,49 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
+  font-size: 16px;
   background-color: var(--background-color);
   font-family: "Poppins";
 }
 
 h1 {
+  font-size: 1rem;
   color: rgb(16, 73, 159);
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 h5 {
+  font-size: 1.2rem;
   text-align: center;
   padding: 1rem 0;
+}
+
+.map-container {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.world-map {
+  z-index: 3;
+  transform: scale(0.4);
+}
+
+.selected {
+  stroke: rgb(3, 9, 74);
+  stroke-width: 50px;
+}
+
+.Africa,
+.Asia,
+.Oceania,
+.Europe,
+.America {
+  fill: var(--continent-color);
 }
 
 .game-container {
@@ -46,13 +70,17 @@ h5 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
+
+/* .display-flex {
+  display: flex;
+} */
 
 .hidden {
   opacity: 0;
-  display: none;
+  display: none !important;
 }
 
 .loader-container {
@@ -61,7 +89,6 @@ h5 {
   place-items: center;
   justify-content: center;
 }
-
 .loader-wrapper {
   width: 100px;
   height: 100px;
@@ -70,8 +97,6 @@ h5 {
   width: 100%;
   height: 100%;
   border: 5px solid var(--background-color);
-  /* border-top-color: var(--loader-color-primary);
-  border-bottom-color: var(--loader-color-secondary); */
   border-top-color: var(--loader-color1);
   border-right-color: var(--loader-color2);
   border-bottom-color: var(--loader-color3);
@@ -85,11 +110,8 @@ h5 {
   border-right-color: var(--loader-color2);
   border-bottom-color: var(--loader-color3);
   border-left-color: var(--loader-color4);
-  /* border-top-color: var(--loader-color-primary);
-  border-bottom-color: var(--loader-color-secondary); */
   animation-duration: 2.5s;
 }
-
 @keyframes rotate {
   0% {
     transform: scale(1) rotate(360deg);
@@ -102,8 +124,33 @@ h5 {
   }
 }
 
-#svg-start-game {
-  color: var(--continent-color);
-  width: 44px;
-  height: 44px;
+/* phones in landscape mode */
+@media screen and (orientation: landscape) and (width < 845px) {
+
+  .map-container {
+    height: 90vh;
+  }
+
+  .world-map {
+    transform: scale(0.6);
+  }
+
+  h1 {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* PC  */
+@media screen and (width > 845px){
+  .world-map {
+    transform: scale(1);
+  }
+
+  h1 {
+    position: relative;
+    font-size: 2rem;
+  }
 }

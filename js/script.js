@@ -14,6 +14,7 @@ const flagContainer = document.querySelector(".flag-img");
 const answerWrapper = document.querySelector(".answerWrapper");
 const scoreTableWrapper = document.querySelector(".scoreTableWrapper");
 const imgFlag = document.getElementById("flag");
+const question = document.getElementById("question");
 
 //answers buttons array
 const answerBtnA = document.getElementById("A");
@@ -23,25 +24,24 @@ const answerBtnD = document.getElementById("D");
 const answersBtns = [answerBtnA, answerBtnB, answerBtnC, answerBtnD];
 
 //other buttons
-const btnPlay = document.querySelector(".play-btn-div");
-const btnResetGame = document.getElementById("resetGame");
+const btnStartGame = document.querySelector(".divStartGame");
+const btnResetGame = document.querySelector(".btnResetGame");
 
 const init = function () {
   //hide: map and btn
-  hideComponents([svgMap, btnPlay, header]);
+  hideComponents([svgMap, btnStartGame, header]);
 
   //show loader till fetch ends
   showComponents([questionWrapper, loader]);
-  questionWrapper.classList.add("display-flex");
 
   //getting info about all continents from API
   getCountries(game.selectedContinent);
 };
 
-//game - main object of quiz
+// game - main object of quiz
 // selectedContinent - array of selected continents from world map
 // countryList - array of country and flags of player selected continent, if country is drawn to question - delete this country from this array
-//countryToAnswers - array of ALL country names selected continent to generate answers.always all country.
+// countryToAnswers - array of ALL country names selected continent to generate answers.always all country.
 // questions - array of object questions: answers Array, correctAnswer, flag, playerAnswer.
 let game = {
   selectedContinent: [],
@@ -50,7 +50,7 @@ let game = {
   questions: [],
 };
 const QUESTION_QUANTITY = 1;
-const DELAY_BETWEEN_QUESTIONS_SEC = 1;
+const DELAY_BETWEEN_QUESTIONS_SEC = 2;
 let currQuestion = 0;
 
 // inserting country from fetch to array with country names and flags
@@ -113,17 +113,21 @@ const showQuestion = function () {
   questionNumber.textContent = `Question ${currQuestion + 1} of ${QUESTION_QUANTITY}\n`;
 
   // adding flag to DOM
-  showComponents([loader]);
   imgFlag.src = game.questions[currQuestion].flag;
-  imgFlag.addEventListener("load", hideComponents([loader]));
-
-  // displaing answers to all buttons
-  answersBtns.forEach((ans, index) => {
-    ans.innerHTML = game.questions[currQuestion].answers[index];
+  imgFlag.addEventListener("load", function () {
+    hideComponents([loader]);
+    // displaing answers to all buttons
+    answersBtns.forEach((ans, index) => {
+      ans.innerHTML = game.questions[currQuestion].answers[index];
+    });
+    showComponents([
+      flagContainer,
+      answerWrapper,
+      question,
+      questionNumber,
+      btnResetGame,
+    ]);
   });
-
-  // hideComponents([loader]);
-  showComponents([btnResetGame, flagContainer, answerWrapper]);
 };
 
 // checking player answer
@@ -169,8 +173,6 @@ const checkAnswer = function (playerAnswer, playerAnswerId) {
 
 // player answer to all question - display summary table
 const gameOver = function () {
-  const scoreTable = document.querySelector(".scoreTable");
-
   showComponents([scoreTableWrapper]);
   hideComponents([btnResetGame]);
 
@@ -184,29 +186,31 @@ const gameOver = function () {
     (countCorrectAnswer * 100) / QUESTION_QUANTITY
   ).toFixed(0);
 
+  let wow = percent >= 100 ? `🏆` : ``;
+
   let html = `
     <div class="gameOver">Game over.</div>
-    <div>Your score : <span>${percent}%</span></div>
+    <div>Your score : <span>${percent}% ${wow}</span></div>
     <div class="questionQuantity">Number of questions : <span>${QUESTION_QUANTITY}</span></div>
     <div class="good">Good answers : <span>${countCorrectAnswer}</span></div>
     <div class="wrong">Wrong answers : <span>${countWrongAnswer}</span></div>
   `;
 
   html += `
-      <div class="playAgain-btn">
-      <button class="play-btn">Play again
-        <div class="icon">
-          <svg id="svg-start-game"         
-          viewBox="0 0 24 24" stroke-width="1.5" ><defs><style>.cls-637b8a2bf95e86b59c57a23b-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M18.34,4.21A4.86,4.86,0,0,0,14,6.14H10A4.86,4.86,0,0,0,5.66,4.21,5,5,0,0,0,1.25,9.28v7A3.5,3.5,0,0,0,8,17.61c.42-1.05.94-2.37,1.42-3.66h5.16c.48,1.29,1,2.61,1.42,3.66a3.5,3.5,0,0,0,6.75-1.29v-7A5,5,0,0,0,18.34,4.21Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M18.84,12h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M18.84,8.09h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M20.79,10.05h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M16.89,10.05h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M7.11,12h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M7.11,8.09h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M9.07,10.05h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M5.16,10.05h0Z"></path></svg>
-        </div>
-      </button>
-    </div>
+    <div class="divPlayAgain">
+    <button class="btnStartGame">Play again
+      <div class="icon">
+        <svg id="svgStartGame"         
+        viewBox="0 0 24 24" stroke-width="1.5" ><defs><style>.cls-637b8a2bf95e86b59c57a23b-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M18.34,4.21A4.86,4.86,0,0,0,14,6.14H10A4.86,4.86,0,0,0,5.66,4.21,5,5,0,0,0,1.25,9.28v7A3.5,3.5,0,0,0,8,17.61c.42-1.05.94-2.37,1.42-3.66h5.16c.48,1.29,1,2.61,1.42,3.66a3.5,3.5,0,0,0,6.75-1.29v-7A5,5,0,0,0,18.34,4.21Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M18.84,12h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M18.84,8.09h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M20.79,10.05h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M16.89,10.05h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M7.11,12h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M7.11,8.09h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M9.07,10.05h0Z"></path><path class="cls-637b8a2bf95e86b59c57a23b-1" d="M5.16,10.05h0Z"></path></svg>
+      </div>
+    </button>
+  </div>
 `;
 
-  scoreTable.innerHTML = html;
+  scoreTableWrapper.innerHTML = html;
 
   // after select continents - start game
-  document.querySelector(".playAgain-btn").addEventListener("click", resetGame);
+  document.querySelector(".divPlayAgain").addEventListener("click", resetGame);
 };
 
 //reset game :)
@@ -214,7 +218,7 @@ const resetGame = function () {
   imgFlag.src = "";
 
   // show world map
-  showComponents([svgMap, btnPlay, header]);
+  showComponents([svgMap, btnStartGame, header]);
 
   // loop selected continent for deselect from svg map
   game.selectedContinent.map((con) => {
@@ -225,8 +229,15 @@ const resetGame = function () {
   });
 
   //hiddin page componets
-  questionWrapper.classList.remove("display-flex");
-  hideComponents([questionWrapper, btnPlay, btnResetGame, scoreTableWrapper]);
+  hideComponents([
+    answerWrapper,
+    question,
+    questionWrapper,
+    questionNumber,
+    btnStartGame,
+    btnResetGame,
+    scoreTableWrapper,
+  ]);
 
   //reseting answer button classes
   resetBtnClass();
@@ -311,7 +322,7 @@ const timeout = function (s) {
 // remove class hidden from given components
 const showComponents = function (components) {
   components.forEach((comp) => {
-    // console.log("remove:", comp);
+    // console.log("show remove:", comp);
     comp.classList.remove("hidden");
   });
 };
@@ -319,13 +330,14 @@ const showComponents = function (components) {
 // add class hidden from given components
 const hideComponents = function (components) {
   components.forEach((comp) => {
-    // console.log("add:", comp);
+    // console.log("hide add:", comp);
     comp.classList.add("hidden");
   });
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // EVENT LISTENERS
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // world map - select continents
 svgMap.addEventListener("click", function (e) {
   e.preventDefault();
@@ -341,12 +353,14 @@ svgMap.addEventListener("click", function (e) {
 
   // show or hide start game btn
 
-  if (game.selectedContinent.length > 0) showComponents([btnPlay]);
-  if (game.selectedContinent.length === 0) hideComponents([btnPlay]);
+  if (game.selectedContinent.length > 0) showComponents([btnStartGame]);
+  if (game.selectedContinent.length === 0) hideComponents([btnStartGame]);
 });
 
 // after select continents - start game
-btnPlay.addEventListener("click", init);
+btnStartGame.addEventListener("click", init);
+
+btnResetGame.addEventListener("click", resetGame);
 
 // player choose answer - check answer
 answerWrapper.addEventListener("click", function (e) {
@@ -355,5 +369,3 @@ answerWrapper.addEventListener("click", function (e) {
   if (!answer || !answerId) return;
   checkAnswer(answer, answerId);
 });
-
-btnResetGame.addEventListener("click", resetGame);
