@@ -1,6 +1,6 @@
 "use strict";
 
-import { getCountries } from "./model.js";
+import { getCountries, errorMessage } from "./model.js";
 
 // selecting from DOM
 const svgMap = document.getElementById("svgMap");
@@ -29,7 +29,7 @@ const btnResetGame = document.querySelector(".btnResetGame");
 
 const init = function () {
   //hide: map and btn
-  hideComponents([svgMap, btnStartGame, header]);
+  hideComponents([svgMap, btnStartGame]);
 
   //show loader till fetch ends
   showComponents([questionWrapper, loader]);
@@ -49,8 +49,8 @@ let game = {
   countryToAnswers: [],
   questions: [],
 };
-const QUESTION_QUANTITY = 1;
-const DELAY_BETWEEN_QUESTIONS_SEC = 2;
+const QUESTION_QUANTITY = 10;
+const DELAY_BETWEEN_QUESTIONS_SEC = 1;
 let currQuestion = 0;
 
 // inserting country from fetch to array with country names and flags
@@ -79,6 +79,9 @@ const generateQuestions = function () {
 
     //draw three random country to answers
     let answers = [];
+    if (!game.countryList) errorMessage("Failed to fetch data.");
+    console.log(game);
+    console.log(game.countryList);
     answers.push(game.countryList[randomCountryIndex].name);
 
     // copy list all countries and delete country that is correct answer to random generate three other answers
@@ -113,7 +116,9 @@ const showQuestion = function () {
   questionNumber.textContent = `Question ${currQuestion + 1} of ${QUESTION_QUANTITY}\n`;
 
   // adding flag to DOM
+  // imgFlag.src = 'https://flagcdn.com/np.svg';
   imgFlag.src = game.questions[currQuestion].flag;
+
   imgFlag.addEventListener("load", function () {
     hideComponents([loader]);
     // displaing answers to all buttons
@@ -189,11 +194,11 @@ const gameOver = function () {
   let wow = percent >= 100 ? `🏆` : ``;
 
   let html = `
-    <div class="gameOver">Game over.</div>
+    <div class="gameOver">Game over</div>
     <div>Your score : <span>${percent}% ${wow}</span></div>
     <div class="questionQuantity">Number of questions : <span>${QUESTION_QUANTITY}</span></div>
-    <div class="good">Good answers : <span>${countCorrectAnswer}</span></div>
-    <div class="wrong">Wrong answers : <span>${countWrongAnswer}</span></div>
+    <div class="good">Good answers : ${countCorrectAnswer}</div>
+    <div class="wrong">Wrong answers : ${countWrongAnswer}</div>
   `;
 
   html += `
@@ -255,9 +260,12 @@ const resetGame = function () {
 //selecting continent on world map
 const selectContinent = function (clickContinent) {
   // select class of clicked continent
+
   const querySelAll = document.querySelectorAll(`.${clickContinent}`);
   querySelAll.forEach((child) => {
+    let continentSelected = `${clickContinent}-selected`;
     child.classList.toggle("selected");
+    child.classList.toggle(continentSelected);
 
     //add or remove from selectedContinent array
     if (child.classList.contains("selected")) {
@@ -353,8 +361,14 @@ svgMap.addEventListener("click", function (e) {
 
   // show or hide start game btn
 
-  if (game.selectedContinent.length > 0) showComponents([btnStartGame]);
-  if (game.selectedContinent.length === 0) hideComponents([btnStartGame]);
+  if (game.selectedContinent.length > 0) {
+    showComponents([btnStartGame]);
+    hideComponents([header]);
+  }
+  if (game.selectedContinent.length === 0) {
+    hideComponents([btnStartGame]);
+    showComponents([header]);
+  }
 });
 
 // after select continents - start game

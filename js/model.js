@@ -42,6 +42,12 @@ const getJSON = function (url, errMsg = "Something went wrong") {
 // australia 22
 
 
+export const errorMessage = function(err) {
+  const errorDiv = document.querySelector(".error");
+  errorDiv.classList.remove("hidden");
+  errorDiv.innerText = `${err} \nPlease try again`;
+}
+
 // search region from given array
 export const getCountries = async function (regionArr) {
   try {
@@ -71,6 +77,7 @@ export const getCountries = async function (regionArr) {
     if (!resultData) throw new Error(`🔥 Data not found. 🔥`);
     else startGame();
   } catch (err) {
-    console.log(`🔥🔥 ${err} 🔥🔥`);
+    // console.log(`🔥🔥 ${err} 🔥🔥`);
+    errorMessage(err);
   }
 };

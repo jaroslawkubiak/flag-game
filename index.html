@@ -14,7 +14,7 @@
   <body>
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-    <div class="game-container ">
+    <div class="game-container">
         <div class="questionWrapper hidden">
 
           <!-- game over - score table -->
@@ -32,7 +32,7 @@
                   <style>
                     .cls-63ce7424ea57ea6c838005b2-1 {
                       fill: none;
-                      stroke: #000;
+                      stroke: rgb(3, 5, 63);
                       stroke-miterlimit: 10;
                     }
                   </style>
@@ -49,21 +49,24 @@
             </button>
 
             <div class="col questionNumber hidden"></div>
-            <div class="col flag-img ">
+            <div class="col flag-img">
               <img id="flag"></img>
               <!-- loading wrapper - waiting for fetch -->
-              <div class="loader-container  hidden">
+              <div class="loader-container hidden">
                 <div class="loader-wrapper">
                   <div class="loader  ">
                     <div class="loader loader--inner "></div>
                   </div>
-                </div>     
-              </div>              
+                </div>  
+              </div>  
+
             </div>
             <div class="col hidden" id="question">
               <h5>Which country has this flag?</h5>
             </div>
           </div>
+          <div class="error hidden"></div>   
+          
 
           <div class="column answerWrapper hidden">
             <div class="col">
@@ -84,8 +87,8 @@
       <div class="map-container">
         <!-- header - info about game -->
         <div class="">
-          <h1 id="header">
-            Click on a continent to start the game.
+          <h1 id="header" class="header">
+            Click on a continent to start the game
           </h1>      
         </div>
         <!-- BEGIN world map in svg - player can select designatet continent -->
@@ -380,7 +383,6 @@
             </a>
           </svg>
         </div>
-  
         <!-- start game button - visible after select at leats one continent -->
         <div class=" divStartGame hidden">
           <button class="btnStartGame">

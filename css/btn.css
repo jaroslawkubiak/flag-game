@@ -3,6 +3,9 @@
   --button-height: 50px;
   --button-padding: 0.2rem;
   --button-margin: 0.2rem;
+
+  --correct-answer-color: rgb(57, 197, 95);
+  --wrong-answer-color: rgb(202, 3, 3);
 }
 
 /* answer select button */
@@ -12,9 +15,7 @@
   padding: var(--button-padding);
   margin: var(--button-margin);
   width: 90%;
-  /* letter-spacing: 2px; */
   text-transform: uppercase;
-  /* display: inline-block; */
   text-align: center;
   font-weight: bold;
   border-radius: 20px;
@@ -23,8 +24,8 @@
   transition: 0.3s ease all;
   z-index: 1;
   border: 3px solid var(--color-primary);
-  background-color: white;
   color: var(--color-primary);
+  background-color: white;
 }
 /* btn with correct answer */
 .btnQuestionCorrect {
@@ -39,8 +40,8 @@
   display: inline-block;
   text-align: center;
   font-weight: bold;
-  border: 3px solid chartreuse;
-  background-color: chartreuse;
+  border: 3px solid var(--correct-answer-color);
+  background-color: var(--correct-answer-color);
   border-radius: 20px;
   position: relative;
   color: white;
@@ -61,8 +62,8 @@
   display: inline-block;
   text-align: center;
   font-weight: bold;
-  border: 3px solid crimson;
-  background-color: crimson;
+  border: 3px solid var(--wrong-answer-color);
+  background-color: var(--wrong-answer-color);
   border-radius: 20px;
   position: relative;
   color: white;
@@ -83,52 +84,47 @@
   display: inline-block;
   text-align: center;
   font-weight: bold;
-  border: 3px solid rgb(147, 147, 147);
-  background-color: rgb(222, 222, 222);
+  border: 3px solid rgb(173, 173, 173);
+  background-color: rgb(225, 221, 221);
+  color: rgb(173, 173, 173);
   border-radius: 20px;
   position: relative;
-  color: rgb(177, 177, 177);
   text-decoration: none;
   transition: 0.3s ease all;
   z-index: 1;
 }
 
 /* play again button */
-.playAgain-btn {
-  width: 200px;
-  padding-top: 3rem;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 .divPlayAgain {
   margin-top: 2rem;
-  width: 90%;
 }
 
 /* start game button */
 .divStartGame {
+  position: absolute;
   transition: all 0.3s;
   z-index: 4;
+  top: 16rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #svgStartGame {
-  color: var(--continent-color);
-  width: 44px;
-  height: 44px;
+  color: var(--color-primary);
+  width: 20px;
+  height: 20px;
 }
 
 .btnStartGame {
-  background: var(--color-primary);
-  color: rgb(0, 0, 0);
-  text-transform: uppercase;
+  background: rgb(250, 246, 120);
+  color: var(--color-primary);
   font-family: "Poppins";
-  padding: 0.35em;
-  width: 110%;
-  padding-left: 1.2em;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
+  padding: 0.35em;
+  width: 210px;
+  padding-left: 300px;
+  padding-left: 1.2em;
   border-radius: 0.9em;
   border: none;
   letter-spacing: 0.05em;
@@ -163,8 +159,8 @@
 .btnResetGame {
   background: none;
   position: absolute;
-  top: 1rem;
-  right: -1rem;
+  top: 0.5rem;
+  right: -0.5rem;
   z-index: 10;
   border: none;
   cursor: pointer;
@@ -181,16 +177,18 @@
 }
 
 /* phones in landscape mode */
-@media screen and (orientation: landscape) and (width < 845px) {
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : landscape){
   .divStartGame {
-    position: absolute;
-    bottom: 3rem;
+    top: 19rem;
   }
 
   /* reset game button */
   .btnResetGame {
     top: 0.5rem;
-    left: -2rem;
+    left: -1.5rem;
     width: 30px;
     height: 30px;
   }
@@ -199,14 +197,8 @@
     width: 20px;
     height: 20px;
   }
-
-  .divPlayAgain {
-    position: absolute;
-    width: 250px;
-    right: 80px;
-    top: 30%;
-  }
 }
+
 /* PC  */
 @media screen and (width >= 845px) {
   :root {
@@ -216,6 +208,21 @@
     --button-margin: 0.5rem;
   }
 
+  .divStartGame {
+    top: 54rem;
+  }
+
+  .btnStartGame {
+    padding: 0.5em;
+    width: 350px;
+    font-size: 2rem;
+  }
+
+  #svgStartGame {
+    width: 65px;
+    height: 65px;
+  }
+  
   .btnQuestion:hover {
     background-color: var(--color-primary);
     color: white;
@@ -223,12 +230,6 @@
 
   .btnQuestion:active {
     transform: scale(0.9);
-  }
-
-  .divPlayAgain {
-    position: relative;
-    width: 200px;
-    align-self: center;
   }
 
 }

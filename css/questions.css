@@ -1,13 +1,13 @@
 .questionWrapper {
-  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  position: relative;
+  background-image: linear-gradient(0deg, #eff7fb 0%, #93ddff 100%);
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 95vw;
   height: 85vh;
   border-radius: 30px;
-  border: 3px solid black;
+  border: 3px solid rgb(3, 5, 63);
   align-items: center;
-  position: relative;
 }
 
 .column {
@@ -33,57 +33,64 @@
 
 .questionNumber {
   margin-top: 1rem;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 img {
-  /* max-width: 300px; */
-  max-height: 200px;
-  margin-top: 1rem;
+  max-width: 300px;
+  max-height: 220px;
+  object-fit: contain;
 }
+
 .flag-img {
+  margin-top: 1rem;
   flex-grow: 2;
 }
 
 /* score table after game finish */
 .scoreTableWrapper {
   position: absolute;
-  top: 1rem;
-  bottom:1rem;
-  left: 1rem;
-  right:1rem;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   border-radius: 30px;
-  color: white;
-  font-size: 1.2rem;
+  color: var(--color-primary);
+  font-size: 1.6rem;
   padding: 1rem;
-  border: 3px solid black;
-  background-color: rgba(65, 65, 65, 0.92);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(0deg, #eff7fb 0%, #93ddff 100%);
 }
 
 .gameOver {
   text-align: center;
-  padding-bottom: 20px;
-}
-
-.good span {
-  color: chartreuse;
-}
-
-.wrong span {
-  color: crimson;
+  padding-bottom: 40px;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 /* phones in landscape mode */
-@media screen and (orientation: landscape) and (width < 845px) {
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : landscape){
+/* @media only screen and (orientation: landscape) and (width < 845px) { */
   .questionWrapper {
     flex-direction: row;
     justify-content: end;
     width: 700px;
-    height: 350px;
+    height: 320px;
   }
 
+  img {
+    max-width: 300px;
+    max-height: 180px;
+  }
+    
   .topWrapper {
     height: 100%;
     width: 45%;
@@ -97,23 +104,19 @@ img {
   .questionNumber {
     margin-top: 0.5rem;
   }
-  img {
-    margin-top: 0;
-  }
 
   .scoreTableWrapper {
     font-size: 1rem;
     padding: 1rem;
   }
-  
 }
 
 /* PC  */
 @media screen and (width > 845px) {
   .questionWrapper {
     background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-    height: var(--card-height);
-    width: calc((2.5 * var(--card-height)) / 3.5);
+    height: 800px;
+    width: 560px;
     flex-direction: column;
   }
 
@@ -132,5 +135,4 @@ img {
   .scoreTableWrapper {
     padding: 2rem;
   }
-  
 }

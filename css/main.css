@@ -2,17 +2,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 :root {
-  --background-color: rgb(198, 255, 255);
-  --continent-color: #4b8af7;
+  --background-color: #b8e5fa;
+  --color-primary: rgb(7, 13, 185);
 
-  --color-primary: #4b8af7;
-  --card-color: #d0d0d0;
-  --card-height: 800px;
+  --loader-color1: rgb(34, 37, 133);
+  --loader-color2: rgb(53, 57, 188);
+  --loader-color3: rgb(7, 13, 185);
+  --loader-color4: rgb(7, 11, 112);
 
-  --loader-color1: #0045bc;
-  --loader-color2: #153d83;
-  --loader-color3: #18305a;
-  --loader-color4: #132035;
+  --asia-color: #55c7f1;
+  --africa-color: #4cb998;
+  --europe-color: #d9a08a;
+  --america-color: #786eb4;
+  --oceania-color: #9c6c85;
+
+  --asia-color-selected: #2cbdf1;
+  --africa-color-selected: #18b888;
+  --europe-color-selected: #db8664;
+  --america-color-selected: #6858c1;
+  --oceania-color-selected: #9f4875;
 }
 * {
   margin: 0;
@@ -26,10 +34,18 @@ body {
   font-family: "Poppins";
 }
 
+.header {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 h1 {
-  font-size: 1rem;
-  color: rgb(16, 73, 159);
-  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--color-primary);
 }
 
 h5 {
@@ -39,34 +55,61 @@ h5 {
 }
 
 .map-container {
-  width: 95%;
+  position: relative;
+  width: 90%;
+  /* height: 50%; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .world-map {
+  position: absolute;
   z-index: 3;
+  top: -3rem;
   transform: scale(0.4);
 }
 
-.selected {
-  stroke: rgb(3, 9, 74);
-  stroke-width: 50px;
+.Africa {
+  fill: var(--africa-color);
+}
+.Asia {
+  fill: var(--asia-color);
+}
+.Oceania {
+  fill: var(--oceania-color);
+}
+.America {
+  fill: var(--america-color);
+}
+.Europe {
+  fill: var(--europe-color);
 }
 
-.Africa,
-.Asia,
-.Oceania,
-.Europe,
-.America {
-  fill: var(--continent-color);
+.selected {
+  stroke: rgb(3, 5, 63);
+  stroke-width: 20px;
+}
+
+.Africa-selected {
+  fill: var(--africa-color-selected);
+}
+.Asia-selected {
+  fill: var(--asia-color-selected);
+}
+.Europe-selected {
+  fill: var(--europe-color-selected);
+}
+.America-selected {
+  fill: var(--america-color-selected);
+}
+.Oceania-selected {
+  fill: var(--oceania-color-selected);
 }
 
 .game-container {
-  margin-top: 1rem;
   position: relative;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,42 +117,33 @@ h5 {
   height: 100vh;
 }
 
-/* .display-flex {
-  display: flex;
-} */
-
 .hidden {
   opacity: 0;
   display: none !important;
 }
 
 .loader-container {
-  margin: 1rem 0;
   display: grid;
   place-items: center;
   justify-content: center;
+
 }
 .loader-wrapper {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
 }
 .loader {
   width: 100%;
   height: 100%;
-  border: 5px solid var(--background-color);
+  border: 7px solid var(--background-color);
   border-top-color: var(--loader-color1);
   border-right-color: var(--loader-color2);
   border-bottom-color: var(--loader-color3);
   border-left-color: var(--loader-color4);
-
   border-radius: 50%;
   animation: rotate 5s linear infinite;
 }
 .loader--inner {
-  border-top-color: var(--loader-color1);
-  border-right-color: var(--loader-color2);
-  border-bottom-color: var(--loader-color3);
-  border-left-color: var(--loader-color4);
   animation-duration: 2.5s;
 }
 @keyframes rotate {
@@ -123,34 +157,50 @@ h5 {
     transform: scale(1) rotate(360deg);
   }
 }
+.error {
+  text-align: center;
+  padding: 1rem;
+  color: rgb(202, 3, 3);
+  font-weight: 700;
+  font-size: 1.2em;
+  width: 100%;
+}
 
 /* phones in landscape mode */
-@media screen and (orientation: landscape) and (width < 845px) {
-
-  .map-container {
-    height: 90vh;
-  }
-
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : landscape){
   .world-map {
-    transform: scale(0.6);
+    top: -1rem;
+    transform: scale(0.7);
+  }
+  .header {
+    top: 1rem;
   }
 
   h1 {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+    font-size: 1rem;
+  }
+  h5 {
+    font-size: 1rem;
   }
 }
 
 /* PC  */
-@media screen and (width > 845px){
-  .world-map {
-    transform: scale(1);
+@media screen and (width > 845px) {
+  .header {
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   h1 {
-    position: relative;
-    font-size: 2rem;
+    font-size: 3rem;
+  }
+
+  .world-map {
+    top: 20rem;
+    transform: scale(2);
   }
 }
