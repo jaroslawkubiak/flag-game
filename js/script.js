@@ -80,8 +80,6 @@ const generateQuestions = function () {
     //draw three random country to answers
     let answers = [];
     if (!game.countryList) errorMessage("Failed to fetch data.");
-    console.log(game);
-    console.log(game.countryList);
     answers.push(game.countryList[randomCountryIndex].name);
 
     // copy list all countries and delete country that is correct answer to random generate three other answers
@@ -116,7 +114,6 @@ const showQuestion = function () {
   questionNumber.textContent = `Question ${currQuestion + 1} of ${QUESTION_QUANTITY}\n`;
 
   // adding flag to DOM
-  // imgFlag.src = 'https://flagcdn.com/np.svg';
   imgFlag.src = game.questions[currQuestion].flag;
 
   imgFlag.addEventListener("load", function () {
@@ -223,13 +220,14 @@ const resetGame = function () {
   imgFlag.src = "";
 
   // show world map
-  showComponents([svgMap, btnStartGame, header]);
+  showComponents([svgMap, header]);
 
   // loop selected continent for deselect from svg map
   game.selectedContinent.map((con) => {
     const querySelAll = document.querySelectorAll(`.${con}`);
+    let continent = `${con}-selected`;
     querySelAll.forEach((child) => {
-      child.classList.toggle("selected");
+      child.classList.remove(continent);
     });
   });
 
@@ -239,7 +237,6 @@ const resetGame = function () {
     question,
     questionWrapper,
     questionNumber,
-    btnStartGame,
     btnResetGame,
     scoreTableWrapper,
   ]);
@@ -264,11 +261,11 @@ const selectContinent = function (clickContinent) {
   const querySelAll = document.querySelectorAll(`.${clickContinent}`);
   querySelAll.forEach((child) => {
     let continentSelected = `${clickContinent}-selected`;
-    child.classList.toggle("selected");
+    // child.classList.toggle("selected");
     child.classList.toggle(continentSelected);
 
     //add or remove from selectedContinent array
-    if (child.classList.contains("selected")) {
+    if (child.classList.contains(continentSelected)) {
       game.selectedContinent.indexOf(clickContinent) === -1 &&
         game.selectedContinent.push(clickContinent);
     } else {
@@ -294,7 +291,7 @@ const shuffleArray = function (array) {
 
 // according to length of given array generate random number
 const generateCountryRandomIndex = function (arrLength) {
-  return Math.trunc(Math.random() * arrLength) + 1;
+  return Math.trunc(Math.random() * arrLength);
 };
 
 //generate three other answer - others country to question
@@ -330,7 +327,6 @@ const timeout = function (s) {
 // remove class hidden from given components
 const showComponents = function (components) {
   components.forEach((comp) => {
-    // console.log("show remove:", comp);
     comp.classList.remove("hidden");
   });
 };
@@ -338,7 +334,6 @@ const showComponents = function (components) {
 // add class hidden from given components
 const hideComponents = function (components) {
   components.forEach((comp) => {
-    // console.log("hide add:", comp);
     comp.classList.add("hidden");
   });
 };

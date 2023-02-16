@@ -21,6 +21,9 @@
   --europe-color-selected: #db8664;
   --america-color-selected: #6858c1;
   --oceania-color-selected: #9f4875;
+
+  --stroke-continet: rgb(3, 5, 63);
+  --stroke-width-continet: 20px;
 }
 * {
   margin: 0;
@@ -86,25 +89,35 @@ h5 {
   fill: var(--europe-color);
 }
 
-.selected {
-  stroke: rgb(3, 5, 63);
-  stroke-width: 20px;
-}
-
 .Africa-selected {
   fill: var(--africa-color-selected);
+  stroke: var( --stroke-continet);
+  stroke-width: var(--stroke-width-continet);
+
 }
 .Asia-selected {
   fill: var(--asia-color-selected);
+  stroke: var( --stroke-continet);
+  stroke-width: var(--stroke-width-continet);
+
 }
 .Europe-selected {
   fill: var(--europe-color-selected);
+  stroke: var( --stroke-continet);
+  stroke-width: var(--stroke-width-continet);
+
 }
 .America-selected {
   fill: var(--america-color-selected);
+  stroke: var( --stroke-continet);
+  stroke-width: var(--stroke-width-continet);
+
 }
 .Oceania-selected {
   fill: var(--oceania-color-selected);
+  stroke: var( --stroke-continet);
+  stroke-width: var(--stroke-width-continet);
+
 }
 
 .game-container {
@@ -196,11 +209,11 @@ and (orientation : landscape){
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .world-map {
-    top: 20rem;
-    transform: scale(2);
+    top: 14rem;
+    transform: scale(1.6);
   }
 }

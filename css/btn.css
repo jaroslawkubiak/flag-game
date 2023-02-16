@@ -27,6 +27,16 @@
   color: var(--color-primary);
   background-color: white;
 }
+
+.btnQuestion:hover {
+  background-color: var(--loader-color4);
+  color: white;
+}
+
+.btnQuestion:active {
+  transform: scale(0.9);
+}
+
 /* btn with correct answer */
 .btnQuestionCorrect {
   font-size: var(--button-font);
@@ -209,7 +219,7 @@ and (orientation : landscape){
   }
 
   .divStartGame {
-    top: 54rem;
+    top: 45rem;
   }
 
   .btnStartGame {
@@ -223,13 +233,5 @@ and (orientation : landscape){
     height: 65px;
   }
   
-  .btnQuestion:hover {
-    background-color: var(--color-primary);
-    color: white;
-  }
-
-  .btnQuestion:active {
-    transform: scale(0.9);
-  }
 
 }
