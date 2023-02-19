@@ -49,7 +49,7 @@ let game = {
   countryToAnswers: [],
   questions: [],
 };
-const QUESTION_QUANTITY = 10;
+const QUESTION_QUANTITY = 3;
 const DELAY_BETWEEN_QUESTIONS_SEC = 1;
 let currQuestion = 0;
 
@@ -89,7 +89,7 @@ const generateQuestions = function () {
     );
 
     const randomSet = generateThreeRandomIndex(copyCountries.length);
-    randomSet.forEach((ans) => {
+    randomSet.forEach(ans => {
       return answers.push(copyCountries[ans]);
     });
 
@@ -137,7 +137,7 @@ const checkAnswer = function (playerAnswer, playerAnswerId) {
   const correctAnswer = game.questions[currQuestion].correctAnswer;
 
   //give all buttons disabled atribute
-  answersBtns.map((btn) => {
+  answersBtns.map(btn => {
     btn.className = "";
     btn.classList.add("btnQuestionDisabled");
     btn.disabled = true;
@@ -163,7 +163,7 @@ const checkAnswer = function (playerAnswer, playerAnswerId) {
     wrongAnswerBtn.classList.add("btnQuestionWrong");
 
     // searching and indication correct answer to player
-    answersBtns.map((ansBtn) => {
+    answersBtns.map(ansBtn => {
       if (ansBtn.innerHTML === correctAnswer) {
         ansBtn.className = "";
         ansBtn.classList.add("btnQuestionCorrect");
@@ -180,19 +180,35 @@ const gameOver = function () {
 
   //calculating player score
   const countCorrectAnswer = game.questions.filter(
-    (ques) => ques.playerAnswer
+    ques => ques.playerAnswer
   ).length;
   const countWrongAnswer = QUESTION_QUANTITY - countCorrectAnswer;
 
-  const percent = Math.floor(
+  const percent = +(Math.floor(
     (countCorrectAnswer * 100) / QUESTION_QUANTITY
-  ).toFixed(0);
+  ).toFixed(0));
+
+  //saving data to local storage
+  let bestScore = +(localStorage.getItem("bestScore"));
+  console.log("bestScore:", bestScore);
+  console.log("percent:", percent);
+
+  if (!bestScore) {
+    console.log("saving first score");
+    localStorage.setItem("bestScore", percent);
+    bestScore = percent;
+  } else if (percent > bestScore) {
+    console.log("changing score in storage");
+    localStorage.setItem("bestScore", percent);
+    bestScore = percent;
+  }
 
   let wow = percent >= 100 ? `🏆` : ``;
 
   let html = `
     <div class="gameOver">Game over</div>
     <div>Your score : <span>${percent}% ${wow}</span></div>
+    <div>Your best score : <span>${bestScore}%</span></div>
     <div class="questionQuantity">Number of questions : <span>${QUESTION_QUANTITY}</span></div>
     <div class="good">Good answers : ${countCorrectAnswer}</div>
     <div class="wrong">Wrong answers : ${countWrongAnswer}</div>
@@ -223,10 +239,10 @@ const resetGame = function () {
   showComponents([svgMap, header]);
 
   // loop selected continent for deselect from svg map
-  game.selectedContinent.map((con) => {
+  game.selectedContinent.map(con => {
     const querySelAll = document.querySelectorAll(`.${con}`);
     let continent = `${con}-selected`;
-    querySelAll.forEach((child) => {
+    querySelAll.forEach(child => {
       child.classList.remove(continent);
     });
   });
@@ -259,7 +275,7 @@ const selectContinent = function (clickContinent) {
   // select class of clicked continent
 
   const querySelAll = document.querySelectorAll(`.${clickContinent}`);
-  querySelAll.forEach((child) => {
+  querySelAll.forEach(child => {
     let continentSelected = `${clickContinent}-selected`;
     // child.classList.toggle("selected");
     child.classList.toggle(continentSelected);
@@ -306,7 +322,7 @@ const generateThreeRandomIndex = function (length) {
 
 // reset all answer button class to normal
 const resetBtnClass = function () {
-  answersBtns.map((btn) => {
+  answersBtns.map(btn => {
     btn.className = "";
     btn.classList.add("btnQuestion");
     btn.disabled = false;
@@ -326,14 +342,14 @@ const timeout = function (s) {
 
 // remove class hidden from given components
 const showComponents = function (components) {
-  components.forEach((comp) => {
+  components.forEach(comp => {
     comp.classList.remove("hidden");
   });
 };
 
 // add class hidden from given components
 const hideComponents = function (components) {
-  components.forEach((comp) => {
+  components.forEach(comp => {
     comp.classList.add("hidden");
   });
 };
