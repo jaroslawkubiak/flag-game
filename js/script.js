@@ -49,7 +49,7 @@ let game = {
   countryToAnswers: [],
   questions: [],
 };
-const QUESTION_QUANTITY = 3;
+const QUESTION_QUANTITY = 10;
 const DELAY_BETWEEN_QUESTIONS_SEC = 1;
 let currQuestion = 0;
 
