@@ -6,7 +6,6 @@ import { getCountries, errorMessage } from "./model.js";
 const svgMap = document.getElementById("svgMap");
 const header = document.getElementById("header");
 
-// const wrapper = document.querySelector(".wrapper");
 const questionWrapper = document.querySelector(".questionWrapper");
 const questionNumber = document.querySelector(".questionNumber");
 const loader = document.querySelector(".loader-container");
@@ -190,19 +189,14 @@ const gameOver = function () {
 
   //saving data to local storage
   let bestScore = +(localStorage.getItem("bestScore"));
-  console.log("bestScore:", bestScore);
-  console.log("percent:", percent);
 
   if (!bestScore) {
-    console.log("saving first score");
     localStorage.setItem("bestScore", percent);
     bestScore = percent;
   } else if (percent > bestScore) {
-    console.log("changing score in storage");
     localStorage.setItem("bestScore", percent);
     bestScore = percent;
   }
-
   let wow = percent >= 100 ? `🏆` : ``;
 
   let html = `
@@ -354,9 +348,9 @@ const hideComponents = function (components) {
   });
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 // EVENT LISTENERS
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 // world map - select continents
 svgMap.addEventListener("click", function (e) {
   e.preventDefault();
