@@ -3,6 +3,7 @@ import { insertCountryObject, startGame } from "./script.js";
 const NOTCountry = [
   "Svalbard and Jan Mayen",
   "Guernsey",
+  "Belarus",
   "Russia",
   "Isle of Man",
   "Faroe Islands",
@@ -26,7 +27,7 @@ const NOTCountry = [
 
 // fetch data
 const getJSON = function (url, errMsg = "Something went wrong") {
-  return fetch(url).then((response) => {
+  return fetch(url).then(response => {
     if (!response.ok) throw new Error(`${errMsg} (${response.status})`);
     return response.json();
   });
@@ -41,26 +42,25 @@ const getJSON = function (url, errMsg = "Something went wrong") {
 // ameryka 55
 // australia 22
 
-
-export const errorMessage = function(err) {
+export const errorMessage = function (err) {
   const errorDiv = document.querySelector(".error");
   errorDiv.classList.remove("hidden");
   errorDiv.innerText = `${err} \nPlease try again`;
-}
+};
 
 // search region from given array
 export const getCountries = async function (regionArr) {
   try {
     let dataToFetch = [];
-    regionArr.forEach((reg) =>
+    regionArr.forEach(reg =>
       dataToFetch.push(getJSON(`https://restcountries.com/v3.1/region/${reg}`))
     );
 
     //fetch data for all choosen continents
     const resultData = await Promise.all(dataToFetch);
 
-    resultData.map((data) => {
-      data.forEach((dat) => {
+    resultData.map(data => {
+      data.forEach(dat => {
         //delete NOT country array before adding to game object
         let addCountry = true;
         for (let i = 0; i < NOTCountry.length; i++)
