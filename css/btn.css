@@ -3,11 +3,9 @@
   --button-height: 50px;
   --button-padding: 0.2rem;
   --button-margin: 0.2rem;
-
   --correct-answer-color: rgb(57, 197, 95);
   --wrong-answer-color: rgb(202, 3, 3);
 }
-
 /* answer select button */
 .btnQuestion {
   font-size: var(--button-font);
@@ -27,18 +25,15 @@
   color: var(--color-primary);
   background-color: white;
 }
-
 .btnQuestion:active {
   transform: scale(0.9);
 }
-
 /* btn with correct answer */
 .btnQuestionCorrect {
   font-size: var(--button-font);
   height: var(--button-height);
   padding: var(--button-padding);
   margin: var(--button-margin);
-
   width: 90%;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -54,7 +49,6 @@
   transition: 0.3s ease all;
   z-index: 1;
 }
-
 /* btn with wrong answer */
 .btnQuestionWrong {
   font-size: var(--button-font);
@@ -76,7 +70,6 @@
   transition: 0.3s ease all;
   z-index: 1;
 }
-
 /* btn disabled */
 .btnQuestionDisabled {
   font-size: var(--button-font);
@@ -98,12 +91,10 @@
   transition: 0.3s ease all;
   z-index: 1;
 }
-
 /* play again button */
 .divPlayAgain {
   margin-top: 2rem;
 }
-
 /* start game button */
 .divStartGame {
   position: absolute;
@@ -113,13 +104,11 @@
   left: 50%;
   transform: translateX(-50%);
 }
-
 #svgStartGame {
   color: var(--color-primary);
   width: 20px;
   height: 20px;
 }
-
 .btnStartGame {
   background: rgb(250, 246, 120);
   color: var(--color-primary);
@@ -141,7 +130,6 @@
   padding-right: 3.3em;
   cursor: pointer;
 }
-
 .btnStartGame .icon {
   background: rgb(255, 255, 255);
   margin-left: 1em;
@@ -155,11 +143,9 @@
   right: 0.3em;
   transition: all 0.3s;
 }
-
 .btnStartGame:hover .icon {
   width: calc(100% - 0.6em);
 }
-
 /* reset game button */
 .btnResetGame {
   background: none;
@@ -170,12 +156,10 @@
   border: none;
   cursor: pointer;
 }
-
 .btnResetGame:hover {
   transform: rotate(180deg);
   transition: 0.5s ease all;
 }
-
 #svgResetGame {
   width: 30px;
   height: 30px;
@@ -186,7 +170,6 @@
   .divStartGame {
     top: 19rem;
   }
-
   /* reset game button */
   .btnResetGame {
     top: 0.5rem;
@@ -194,7 +177,6 @@
     width: 30px;
     height: 30px;
   }
-
   #svgResetGame {
     width: 20px;
     height: 20px;
@@ -213,17 +195,14 @@
     background-color: var(--loader-color4);
     color: white;
   }
-
   .divStartGame {
     top: 45rem;
   }
-
   .btnStartGame {
     padding: 0.5em;
     width: 350px;
     font-size: 2rem;
   }
-
   #svgStartGame {
     width: 65px;
     height: 65px;

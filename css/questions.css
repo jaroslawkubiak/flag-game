@@ -9,7 +9,6 @@
   border: 3px solid rgb(3, 5, 63);
   align-items: center;
 }
-
 .column {
   display: flex;
   flex-direction: column;
@@ -21,7 +20,6 @@
   justify-content: center;
   position: relative;
 }
-
 .topWrapper {
   height: 55%;
   position: relative;
@@ -30,24 +28,20 @@
   height: 40%;
   width: 100%;
 }
-
 .questionNumber {
   margin-top: 1rem;
   font-weight: 700;
   font-size: 1.2rem;
 }
-
 img {
   max-width: 300px;
   max-height: 220px;
   object-fit: contain;
 }
-
 .flag-img {
   margin-top: 1rem;
   flex-grow: 2;
 }
-
 /* score table after game finish */
 .scoreTableWrapper {
   position: absolute;
@@ -65,46 +59,37 @@ img {
   align-items: center;
   background-image: linear-gradient(0deg, #eff7fb 0%, #93ddff 100%);
 }
-
 .gameOver {
   text-align: center;
   padding-bottom: 40px;
   font-size: 2rem;
   font-weight: 700;
 }
-
 /* phones in landscape mode */
 @media only screen
 and (min-device-width : 320px)
-and (max-device-width : 568px)
 and (orientation : landscape){
-/* @media only screen and (orientation: landscape) and (width < 845px) { */
   .questionWrapper {
     flex-direction: row;
     justify-content: end;
     width: 700px;
     height: 320px;
   }
-
   img {
     max-width: 300px;
     max-height: 180px;
   }
-    
   .topWrapper {
     height: 100%;
     width: 45%;
   }
-
   .answerWrapper {
     height: 100%;
     width: 50%;
   }
-
   .questionNumber {
     margin-top: 0.5rem;
   }
-
   .scoreTableWrapper {
     font-size: 1rem;
     padding: 1rem;
@@ -119,15 +104,12 @@ and (orientation : landscape){
     width: 560px;
     flex-direction: column;
   }
-
   .column {
     width: 90%;
   }
-
   .topWrapper {
     height: 45%;
   }
-
   .answerWrapper {
     width: 80%;
     height: 55%;

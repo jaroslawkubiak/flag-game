@@ -30,13 +30,11 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-size: 16px;
   background-color: var(--background-color);
   font-family: "Poppins";
 }
-
 .header {
   width: 100%;
   text-align: center;
@@ -45,18 +43,15 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
-
 h1 {
   font-size: 0.6rem;
   color: var(--color-primary);
 }
-
 h5 {
   font-size: 1.2rem;
   text-align: center;
   padding: 1rem 0;
 }
-
 .map-container {
   position: relative;
   width: 90%;
@@ -65,14 +60,12 @@ h5 {
   flex-direction: column;
   align-items: center;
 }
-
 .world-map {
   position: absolute;
   z-index: 3;
   top: -3rem;
   transform: scale(0.4);
 }
-
 .Africa {
   fill: var(--africa-color);
 }
@@ -88,38 +81,31 @@ h5 {
 .Europe {
   fill: var(--europe-color);
 }
-
 .Africa-selected {
   fill: var(--africa-color-selected);
   stroke: var( --stroke-continet);
   stroke-width: var(--stroke-width-continet);
-
 }
 .Asia-selected {
   fill: var(--asia-color-selected);
   stroke: var( --stroke-continet);
   stroke-width: var(--stroke-width-continet);
-
 }
 .Europe-selected {
   fill: var(--europe-color-selected);
   stroke: var( --stroke-continet);
   stroke-width: var(--stroke-width-continet);
-
 }
 .America-selected {
   fill: var(--america-color-selected);
   stroke: var( --stroke-continet);
   stroke-width: var(--stroke-width-continet);
-
 }
 .Oceania-selected {
   fill: var(--oceania-color-selected);
   stroke: var( --stroke-continet);
   stroke-width: var(--stroke-width-continet);
-
 }
-
 .game-container {
   position: relative;
   margin-top: 1rem;
@@ -129,17 +115,14 @@ h5 {
   width: 100vw;
   height: 100vh;
 }
-
 .hidden {
   opacity: 0;
   display: none !important;
 }
-
 .loader-container {
   display: grid;
   place-items: center;
   justify-content: center;
-
 }
 .loader-wrapper {
   width: 200px;
@@ -182,7 +165,6 @@ h5 {
 /* phones in landscape mode */
 @media only screen
 and (min-device-width : 320px)
-and (max-device-width : 568px)
 and (orientation : landscape){
   .world-map {
     top: -1rem;
@@ -191,7 +173,6 @@ and (orientation : landscape){
   .header {
     top: 1rem;
   }
-
   h1 {
     font-size: 1rem;
   }
@@ -207,11 +188,9 @@ and (orientation : landscape){
     left: 50%;
     transform: translateX(-50%);
   }
-
   h1 {
     font-size: 2rem;
   }
-
   .world-map {
     top: 14rem;
     transform: scale(1.6);
